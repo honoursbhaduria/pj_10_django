@@ -1,0 +1,164 @@
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@700&display=swap" rel="stylesheet">
+    <style> 
+    body{
+        background-color: rgb(171, 240, 254);
+    }
+        .selfhead{
+            font-size: 90px;
+            font-weight: bolder;
+            font-family: 'Baloo Chettan 2', cursive;
+        } 
+        @media only screen and (max-width:485px){
+            .selfhead{
+            font-size: 50px;
+            font-weight: bold;
+        } 
+        }
+    </style>
+    <title>GFG</title>
+</head>
+<body>
+    <div class="container" id="Contact-us">
+        <div class="selfhead text-center py-0 ">
+            URL shortener
+        </div>
+    </div>
+
+    <div class="container my-3">
+        <form method="post" action="/index_form">
+            {%csrf_token%}
+            <div class="mb-3">
+              <label for="url" class="form-label fw-bold">Enter Long URL</label>
+              <input type="text" class="form-control" id="url" aria-describedby="emailHelp" placeholder="Enter your URL" name="long_url"> 
+            </div>
+            <p class="text-center"><button type="submit" class="btn btn-danger">Submit</button>
+            </p>
+          </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+</body>
+</html> {% endcomment %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+
+    <style>
+        body {
+            background-color: #fff3e6; /* warm cream background */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .header {
+            font-size: 64px;
+            font-weight: bold;
+            margin: 40px 0 10px;
+            color: #5e2bff; /* deep violet */
+        }
+
+        @media (max-width: 485px) {
+            .header {
+                font-size: 40px;
+            }
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            max-width: 500px;
+            margin: 30px auto;
+            padding: 30px 25px;
+            border-radius: 15px;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+            text-align: left;
+            font-size: 16px;
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #5e2bff;
+            color: #fff;
+            padding: 12px 28px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #471ec4;
+        }
+
+        .short-url {
+            margin-top: 25px;
+            padding: 18px;
+            background-color: #e8e4ff;
+            border-radius: 10px;
+            font-weight: bold;
+            color: #5e2bff;
+            word-wrap: break-word;
+        }
+
+        a.short-link {
+            color: #5e2bff;
+            text-decoration: none;
+        }
+
+        a.short-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">URL Shortener</div>
+
+    <div class="form-container">
+        <form method="post" action="/index_form">
+            {% csrf_token %}
+            <label for="url">Enter Long URL</label>
+            <input type="text" id="url" name="long_url" placeholder="https://example.com/very/long/url" required>
+            <button type="submit">Shorten</button>
+        </form>
+
+        {% if short_url %}
+        <div class="short-url">
+            Shortened URL: <br>
+            <a class="short-link" href="{{ short_url }}" target="_blank">{{ short_url }}</a>
+        </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
