@@ -21,7 +21,7 @@ Constants:
 """
 import requests
 
-BITLY_ACCESS_TOKEN = '7efe82e73b1b616858f452e980b12d01e12fd75d'  # Replace with your Bitly token
+BITLY_ACCESS_TOKEN = 'paste your api token'  # Replace with your Bitly token
 
 def index(request):
     return render(request, 'index.html')
